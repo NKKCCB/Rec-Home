@@ -1,0 +1,17 @@
+__pycache__
+.benchmarks
+.cache
+.coverage
+.direnv
+.env
+.idea
+.pytest_cache
+.python-version
+.venv
+*_version.py
+*.egg-info
+*.gguf
+benchmarks/results
+build
+docs/build
+logs

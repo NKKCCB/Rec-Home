@@ -1,0 +1,184 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "outlines"
+authors= [{name = "Outlines Developers"}]
+description = "Probabilistic Generative Model Programming"
+requires-python = ">=3.9,<3.13"
+license = {text = "Apache-2.0"}
+keywords=[
+    "machine learning",
+    "deep learning",
+    "language models",
+    "structured generation",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+   "interegular",
+   "jinja2",
+   "lark",
+   "nest_asyncio",
+   "numpy",
+   "cloudpickle",
+   "diskcache",
+   "pydantic>=2.0",
+   "referencing",
+   "jsonschema",
+   "requests",
+   "tqdm",
+   "typing_extensions",
+   "iso3166",
+   "airportsdata",
+   "torch",
+   "outlines_core==0.1.26",
+   "genson",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+vllm = ["vllm", "transformers", "numpy<2"]
+transformers = ["transformers", "accelerate", "datasets", "numpy<2"]
+mlxlm = ["mlx-lm", "datasets"]
+openai = ["openai"]
+llamacpp = ["llama-cpp-python", "transformers", "datasets", "numpy<2"]
+exllamav2 = ["exllamav2"]
+test = [
+    "pre-commit",
+    "pytest",
+    "pytest-benchmark",
+    "pytest-cov",
+    "pytest-mock",
+    "coverage[toml]>=5.1",
+    "diff-cover",
+    "accelerate",
+    "beartype<0.16.0",
+    "responses",
+    "llama-cpp-python",
+    "mlx-lm>=0.19.2; platform_machine == 'arm64' and sys_platform == 'darwin'",
+    "huggingface_hub",
+    "openai>=1.0.0",
+    "datasets",
+    "transformers",
+    "pillow",
+    "exllamav2",
+    "jax",
+]
+test-gpu=["outlines[test]", "vllm; sys_platform == 'linux'"]
+serve = [
+    "vllm>=0.3.0",
+    "uvicorn",
+    "fastapi",
+    "pydantic>=2.0",
+]
+
+[project.urls]
+homepage = "https://github.com/dottxt-ai/outlines"
+documentation = "https://dottxt-ai.github.io/outlines/"
+repository = "https://github.com/dottxt-ai/outlines"
+
+[project.readme]
+file="README.md"
+content-type = "text/markdown"
+
+[tool.setuptools]
+packages = ["outlines"]
+
+[tool.setuptools.package-data]
+"outlines" = ["py.typed"]
+
+[tool.setuptools_scm]
+write_to = "outlines/_version.py"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+    "error",
+    "ignore::pydantic.warnings.PydanticDeprecatedSince20",
+    "ignore::FutureWarning:transformers.*",
+    "ignore::FutureWarning:huggingface_hub.*",
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning:pyairports.*",
+]
+
+[tool.mypy]
+exclude=["examples"]
+enable_incomplete_feature = ["Unpack"]
+
+[[tool.mypy.overrides]]
+module = [
+    "exllamav2.*",
+    "jax",
+    "jaxlib",
+    "jax.numpy",
+    "jinja2",
+    "jsonschema.*",
+    "openai.*",
+    "mamba_ssm.*",
+    "mlx_lm.*",
+    "mlx.*",
+    "nest_asyncio",
+    "numpy.*",
+    "cloudpickle.*",
+    "diskcache.*",
+    "pydantic.*",
+    "pydantic_core.*",
+    "pytest",
+    "referencing.*",
+    "torch.*",
+    "transformers.*",
+    "llama_cpp",
+    "huggingface_hub",
+    "lark.*",
+    "interegular.*",
+    "datasets.*",
+    "requests.*",
+    "responses.*",
+    "vllm.*",
+    "uvicorn.*",
+    "fastapi.*",
+    "iso3166.*",
+    "airportsdata.*",
+    "outlines_core.*",
+    "genson",
+]
+ignore_missing_imports = true
+
+[tool.coverage.run]
+omit = [
+    "outlines/_version.py",
+    "tests/*",
+]
+branch = true
+relative_files = true
+
+[tool.coverage.report]
+omit = [
+    "tests/*",
+]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "\\.\\.\\.",
+]
+show_missing = true
+
+[tool.diff_cover]
+compare_branch = "origin/main"
+diff_range_notation = ".."
+
+[tool.docformatter]
+style = "numpy"
+in-place = true
+
+[tool.ruff.lint]
+ignore = [ "E731", "F401" ]
