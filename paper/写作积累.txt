@@ -1,2 +1,4 @@
  refining with human annotated IE datasets
  demonstrates superior performance on different IE tasks 
+ a comprehensive systematic review and exploration 
+ capture the inherent patterns and semantic knowledge
