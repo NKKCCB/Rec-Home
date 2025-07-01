@@ -1,0 +1,25 @@
+pip install -U huggingface_hub
+pip install hf_transfer
+export HF_ENDPOINT=https://hf-mirror.com  # 镜像网站
+export HF_HUB_ENABLE_HF_TRANSFER=1  # 开启加速
+huggingface-cli download --repo-type dataset --resume-download Tevatron/wikipedia-nq --local-dir /data/hhc/datasets
+
+
+windows：
+pip install -U huggingface_hub
+pip install hf_transfer
+setx HF_ENDPOINT "https://hf-mirror.com" 
+setx HF_HUB_ENABLE_HF_TRANSFER "1" 
+huggingface-cli download --repo-type dataset --resume-download CSJianYang/ExecRepoBench --local-dir D:\博士学习\数据集\
+
+
+Linux
+pip install -U huggingface_hub
+pip install hf_transfer
+export HF_ENDPOINT=https://hf-mirror.com
+export HF_HUB_ENABLE_HF_TRANSFER=1
+huggingface-cli download sentence-transformers/all-MiniLM-L6-v2 --local-dir /data/hhc/models/
+
+huggingface-cli download intfloat/e5-mistral-7b-instruct --local-dir /data1/hhc/models/
+有时候要设为0
+export HF_HUB_ENABLE_HF_TRANSFER=0
