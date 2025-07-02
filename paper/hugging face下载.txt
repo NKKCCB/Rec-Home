@@ -23,3 +23,6 @@ huggingface-cli download sentence-transformers/all-MiniLM-L6-v2 --local-dir /dat
 huggingface-cli download intfloat/e5-mistral-7b-instruct --local-dir /data1/hhc/models/
 有时候要设为0
 export HF_HUB_ENABLE_HF_TRANSFER=0
+
+huggingface-cli download mistralai/Mistral-7B-Instruct-v0.3  --local-dir /data/hhc/models/
+mistralai/Mistral-7B-Instruct-v0.3 
