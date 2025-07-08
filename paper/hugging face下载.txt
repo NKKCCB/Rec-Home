@@ -24,5 +24,5 @@ huggingface-cli download intfloat/e5-mistral-7b-instruct --local-dir /data1/hhc/
 有时候要设为0
 export HF_HUB_ENABLE_HF_TRANSFER=0
 
-huggingface-cli download mistralai/Mistral-7B-Instruct-v0.3  --local-dir /data/hhc/models/
+huggingface-cli download mistralai/Mistral-7B-Instruct-v0.3  --local-dir /data/hhc/models/Mistral-7B-Instruct-v0.3
 mistralai/Mistral-7B-Instruct-v0.3 
